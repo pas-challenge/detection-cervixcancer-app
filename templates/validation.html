@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid bg-light p-2" style="height:100vh;">
+<div class="row">
+    <div class="col-lg-5">
+        <img class="img-fluid img-thumbnail" src={{diagnostic.image.url}} alt="cervix image" style="height: 600px;">
+    </div>
+    <div class="col-lg-6">
+        <h3>Prédiction</h3>
+        {% if diagnostic.prediction == 0 %}
+        <h4 class="text-success">Négatif<h4>
+            {% else %}
+            <h4 class="text-danger">Négatif<h4>
+        
+        {% endif %}
+        <h3 class="mt-5">Confirmation</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Le cancer est présent
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                <label class="form-check-label" for="flexCheckChecked">
+                  Il n'ya pas de cancer
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                <label class="form-check-label" for="flexCheckChecked">
+                  Necessite un exemen supplémentaire
+                </label>
+            </div>
+
+        </form>
+        <div>
+            <h3 class="mt-5">Lésions précancéreuses</h3>
+            <a href="#" class="text-danger">Consulter</a>
+        </div>
+        <div class="form-floating mt-5">
+            <label for="floatingTextarea2" class="h3">Avis</label>
+            <textarea class="form-control" placeholder="Vous pouvez laisser un commentaire" id="floatingTextarea2" style="height: 100px"></textarea>   
+        </div>
+        <div class="btn-container mt-5 d-flex justify-content-end">
+            <a href="{% url 'diagnostic' %}" target="_blank" class="btn btn-main-2 btn-icon btn-round-full">Terminer <i class="icofont-simple-right ml-2  "></i></a>
+        </div>
+
+    </div>
+    
+    
+</div>
+</div>
+
+{% endblock content %}

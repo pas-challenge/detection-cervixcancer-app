@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<section class="page-title bg-1" style="height:100vh;">
+	<div class="overlay"></div>
+	<div class="container">
+	  <div class="row">
+		<div class="col-md-12">
+		  <div class="block text-center">
+			<span class="text-white">{{dossier.patient.user.first_name}}</span><br/>
+			<h1 class="text-capitalize mb-5 text-lg">{{dossier.numero}}</h1>
+			  
+			<table class="table table-sm">
+				<thead class="text-white">
+				  <tr>
+					<th scope="col">Cervix</th>
+					<th scope="col">Prediction</th>
+					<th scope="col">Validated</th>
+					<th scope="col">Date de réception</th>
+                    <th scope="col">Dernière modification</th>
+					<th scope="col">Action</th>
+				  </tr>
+				</thead>
+				<tbody class="text-white p-5">
+                    {% for diag in dossier.diagnostic.all %}
+                        <tr>
+                            <th scope="row"><a href="{% url 'validation' diag.id %}"><img src={{diag.image.url}} class="img-fluid img-thumbnail" alt="..." style="width:65px;"></a></th>
+                            <td>{{diag.prediction}}</td>
+                            <td>{{diag.validated}}</td>
+                            <td>{{diag.doneAt}}</td>
+                            <td>{{diag.doneModify}}</td>
+                            <td><a href="{% url 'validation' diag.id %}"><i class="icofont-ui-edit text-primary"></i></a></td>
+                        </tr>
+                    {% endfor %}
+					
+				</tbody>
+			  </table>
+  
+			<!-- <ul class="list-inline breadcumb-nav">
+			  <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+			  <li class="list-inline-item"><span class="text-white">/</span></li>
+			  <li class="list-inline-item"><a href="#" class="text-white-50">Book your Seat</a></li>
+			</ul> -->
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+{% endblock content %}
