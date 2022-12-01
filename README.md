@@ -1,2 +1,2 @@
 # detection-cervixcancer-app
-[Plateforme Web demo](shorturl.at/zGLPW)
+[Plateforme Web demo](http://shorturl.at/zGLPW)
